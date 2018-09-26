@@ -1,23 +1,11 @@
 'use strict';
-
-const file = require('../controllers/filesController.js');
-const folder = require('../controllers/foldersController.js');
-const user = require('../controllers/usersController.js');
-
-
+var member = require('../controllers/fileController.js');
 
 module.exports = function(app) {
-	app.route('/file')
-    	.post(file.addFile);
 
-    app.route('/folder')
-    	.post(folder.addFolder);
+ app.route('/upload')
+    .post(member.upload);
 
-    app.route('/share/mail')
-    	.post(user.shareViaMail);
+ app.route('/')
+};
 
-    app.route('/share/pubKey')
-    	.post(user.shareViaPubKey);
-
-    app.route('/')
-}

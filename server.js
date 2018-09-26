@@ -5,11 +5,12 @@ const bodyParser = require('body-parser');
 const app = express(),
       port = process.env.PORT || 3001;
 
+
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true }))
+app.use(bodyParser.urlencoded({limit: '500mb', extended: true }))
 
 // parse requests of content-type - application/json
-app.use(bodyParser.json({limit: '50mb'}))
+app.use(bodyParser.json({limit: '500mb'}))
 
 // allow access control origin and headers
 app.use(function(req, res, next){
@@ -27,7 +28,7 @@ app.use('/uploads', express.static('uploads'));
 
 // define a simple route
 app.get('/', (req, res) => {
-    res.json({"message": "IpfsCloud by vasa"});
+    res.json({"health": "good"});
 });
 
 //Importing routes
@@ -43,4 +44,3 @@ app.use(function(err, req, res, next){
 app.listen(port,'0.0.0.0', () => {
     console.log("Server is listening on port 3001");
 });
-
