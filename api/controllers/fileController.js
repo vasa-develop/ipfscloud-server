@@ -25,6 +25,7 @@ exports.upload = function(req, res, next) {
             fs.createReadStream('/home/ubuntu/ipfscloud-server/'+req.file.path)
             .pipe(unzip.Extract({ path: '/home/ubuntu/ipfscloud-server/uploads/'+name }))
             .on('close',function(){
+	        fs.unlinkSync('/home/ubuntu/ipfscloud-server/'+req.file.path);
                 readAndUploadFolder(req, res, '/home/ubuntu/ipfscloud-server/uploads/'+name);
             });
 
