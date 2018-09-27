@@ -17,19 +17,20 @@ exports.upload = function(req, res, next) {
         if(err){
             res.json({"error": err});
         }
+//	console.log(req);
 
-        if(req.file.path.split('.')[req.file.path.split('.').length-1] == "zip"){
+	
+	if(req.file.path.split('.')[req.file.path.split('.').length-1] == "zip"){
             var name = random();
-            fs.createReadStream('/home/vasa/Desktop/Authox/authapi/'+req.file.path)
-            .pipe(unzip.Extract({ path: '/home/vasa/Desktop/Authox/authapi/uploads/'+name }))
+            fs.createReadStream('/home/ubuntu/ipfscloud-server/'+req.file.path)
+            .pipe(unzip.Extract({ path: '/home/ubuntu/ipfscloud-server/uploads/'+name }))
             .on('close',function(){
-                readAndUploadFolder(req, res, '/home/vasa/Desktop/Authox/authapi/uploads/'+name);
+                readAndUploadFolder(req, res, '/home/ubuntu/ipfscloud-server/uploads/'+name);
             });
 
         }else{
-            readAndUploadFile(req, res, '/home/vasa/Desktop/Authox/authapi/'+req.file.path);
+            readAndUploadFile(req, res, '/home/ubuntu/ipfscloud-server/'+req.file.path);
         }
-
         
 
         

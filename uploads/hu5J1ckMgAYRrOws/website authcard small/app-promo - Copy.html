@@ -1,0 +1,652 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>AuthCard</title>
+  <meta name="description" content="A demo landing page for agencies or product oriented businesses built using Shards, a free, modern and lightweight UI toolkit based on Bootstrap 4.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CSS Dependencies -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="css/shards.min.css?version=2.0.1">
+  <link rel="stylesheet" href="css/shards-extras.min.css?version=2.0.1">
+  <style>
+    .col-md-7.col-sm-7.slide>h3 {
+      color: #fff !important;
+    }
+
+    .text>h5:hover {
+      color: #17c671 !important;
+      cursor: pointer;
+    }
+
+    .mb-auto,
+    .my-auto {
+      margin-bottom: 0px !important;
+    }
+
+    .col-md-7.col-sm-7.slide {
+      margin: auto;
+    }
+
+    .carousel-inner>.item {
+      position: relative;
+      display: none;
+      -webkit-transition: 0.05s ease-in-out left !important;
+      -moz-transition: 0.05s ease-in-out left !important;
+      -o-transition: 0.05s ease-in-out left !important;
+      transition: 0.05s ease-in-out left !important;
+    }
+
+    .card.mb-4 {
+      margin: 0px auto !important;
+      z-index: -1;
+    }
+
+    .avatar.rounded-circle.with-shadows.mb-3.ml-auto.mr-auto {
+      margin-top: -30px;
+    }
+
+    .card {
+      box-shadow: none;
+      border: 1px solid #bbb;
+    }
+
+    #top {
+      position: fixed;
+      background: rgba(0, 0, 0, 0.6); 
+      width: 95%;
+      z-index: 9;
+    }
+.navbar.navbar-expand-lg.navbar-dark.pt-4.px-0.hideme{
+  opacity: 0;
+}
+    @media screen and (max-width: 980px) and (min-width: 580px) {
+
+      .navbar-nav {
+        background: rgba(0, 0, 0, 0.5) !important;
+        padding: 10px;
+        position: relative;
+        z-index: 1;
+      }
+      .shards-app-promo-page--1 .welcome {
+        min-height: 500px !important;
+      }
+      #navbarNav {
+        flex-basis: 0% !important;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .shards-app-promo-page--1 .welcome .iphone-mockup {
+        width: 55%;
+      }
+      .navbar-nav {
+        background: rgba(0, 0, 0, 0.9) !important;
+        padding: 10px;
+        position: relative;
+        z-index: 1;
+      }
+      #navbarNav {
+        flex-basis: 0% !important;
+      }
+      h3 {
+        font-size: 1.653rem;
+      }
+      .card-deck {
+        align-items: center;
+        justify-content: center;
+        margin: 0px auto;
+      }
+      .app-screenshot>img {
+        width: 60%;
+      }
+    }
+ .app-screenshot>img{
+ box-shadow:none !important;
+ }
+  </style>
+</head>
+
+<body class="shards-app-promo-page--1" onload="fade()">
+  <!-- Welcome Section -->
+  <div class="welcome d-flex justify-content-center flex-column">
+    <div class="container-fluid">
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-dark pt-4 px-0 hideme" id="top">
+        <a class="navbar-brand mr-5" href="#" style="margin-left:40px;">
+          <img src="images/app-promo/AuthCard-1.png" class="mr-2" alt="Shards - Agency Landing Page" style="width:40px"> AuthCard
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#home">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#features">Features</a>
+            </li>
+           
+            <li class="nav-item">
+              <a class="nav-link" href="#Newsletter">Newsletter</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#Contact">Contact Us</a>
+            </li>
+          </ul>
+
+          <!-- Social Icons -->
+          <ul class="header-social-icons navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="##">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="##">
+                <i class="fa fa-facebook"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="##">
+                <img class="card-img-top" src="images/common/logo-2.png" alt="Card image cap">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!-- / Navigation -->
+    </div>
+    <!-- .container -->
+
+    <!-- Inner Wrapper -->
+    <div class="inner-wrapper mt-auto mb-auto container-fluid" data-ride="carousel" id="home">
+
+
+      <!-- <ul class="carousel-indicators">
+      <li data-target="#demo" data-slide-to="0" class="active"></li>
+      <li data-target="#demo" data-slide-to="1"></li>
+    
+    </ul> -->
+      <div class="carousel-inner" style="overflow:visible">
+        <div class="carousel-item active">
+
+          <div class="carousel-caption">
+            <div class="row">
+              <div class="col-md-7 col-sm-7 slide">
+                <h3>Identity On BlockChain</h3>
+                <p></p>
+              </div>
+              <div class="col-md-5 col-sm-5 slide">
+                <img class="iphone-mockup ml-auto" src="images/app-promo/iphone-app-mockup.png" alt="iPhone App Mockup - Shards App Promo Demo">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="carousel-item">
+
+          <div class="carousel-caption">
+            <div class="row">
+              <div class="col-md-7 col-sm-7 slide">
+                <h3>Create, manage, sync and exchange blockchain cards</h3>
+                <p>Get access to premises using Access Card, Share your business card with an ease</p>
+              </div>
+              <div class="col-md-5 col-sm-5 slide">
+                <img class="iphone-mockup ml-auto" src="images/app-promo/iphone-app-mockup1.png" alt="iPhone App Mockup - Shards App Promo Demo">
+
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+      </div>
+      <!-- <a class="carousel-control-prev" href="#demo" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a> -->
+
+      <!-- <div class="row" id="first">
+            <div class="col-lg-5 col-md-5 col-sm-12 mt-auto mb-auto mr-3">
+                <h1 class="welcome-heading display-4 text-white" style="font-size:30px !important">The First Digital Card app, based on Blockchain </h1>
+               <p class="text-muted"> A unique application for single sign-on on different online platfoms.</p>
+                 <a href="https://designrevision.com/download/shards" class="btn btn-lg btn-success btn-pill align-self-center"><i class="fa fa-download mr-2"></i>Download</a>
+
+                <div class="d-block mt-4">
+                  <a href="https://designrevision.com/download/shards"><img class="w-25 mt-2 mr-3" src="images/app-promo/badge-apple-store.png" alt="Get it on Apple Store"></a>
+                  <a href="https://designrevision.com/download/shards"><img class="w-25 mt-2" src="images/app-promo/badge-google-play-store.png" alt="Get it on Google Play Store"></a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-5 col-sm-12 ml-auto">
+              <img class="iphone-mockup ml-auto" src="images/app-promo/iphone-app-mockup.png" alt="iPhone App Mockup - Shards App Promo Demo">
+            </div>
+          </div> -->
+      <!-- <div class="row" id="second" style="display:none">
+            <div class="col-lg-5 col-md-5 col-sm-12 mt-auto mb-auto mr-3">
+                <h1 class="welcome-heading display-4 text-white" style="font-size:30px !important">Create, manage, sync and exchange blockchain cards</h1>
+                  <p class="text-muted">Get access to premises using Access CardShare your business card with an ease.</p>
+            <a href="https://designrevision.com/download/shards" class="btn btn-lg btn-success btn-pill align-self-center"><i class="fa fa-download mr-2"></i>Download</a>
+
+                <div class="d-block mt-4">
+                  <a href="https://designrevision.com/download/shards"><img class="w-25 mt-2 mr-3" src="images/app-promo/badge-apple-store.png" alt="Get it on Apple Store"></a>
+                  <a href="https://designrevision.com/download/shards"><img class="w-25 mt-2" src="images/app-promo/badge-google-play-store.png" alt="Get it on Google Play Store"></a>
+                </div> 
+            </div>
+
+            <div class="col-lg-4 col-md-5 col-sm-12 ml-auto">
+              <img class="iphone-mockup ml-auto" src="images/app-promo/iphone-app-mockup.png" alt="iPhone App Mockup - Shards App Promo Demo">
+            </div>
+          </div> -->
+    </div>
+    <!-- / Inner Wrapper -->
+  </div>
+  <!-- / Welcome Section -->
+
+  <!-- Features Section -->
+  <div id="app-features" class="app-features section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="app-screenshot col-lg-4 col-md-12 col-sm-12 px-0 py-5">
+          <img class="mt-auto mb-auto" id="pic1" src="images/app-promo/any.png" alt="App Screenshot - Shards App Promo Demo Page">
+          <img class="mt-auto mb-auto" id="pic2" src="images/app-promo/sign.png" alt="App Screenshot - Shards App Promo Demo Page"
+            style="display:none">
+          <img class="mt-auto mb-auto" id="pic3" src="images/app-promo/bcard.png" alt="App Screenshot - Shards App Promo Demo Page"
+            style="display:none">
+          <img class="mt-auto mb-auto" id="pic4" src="images/app-promo/access.png" alt="App Screenshot - Shards App Promo Demo Page"
+            style="display:none">
+          <img class="mt-auto mb-auto" id="pic5" src="images/app-promo/any.png" alt="App Screenshot - Shards App Promo Demo Page" style="display:none">
+        </div>
+
+        <!-- App Features Wrapper -->
+        <div class="app-features-wrapper col-lg-4 col-md-6 col-sm-12 py-5 mx-auto" id="features">
+          <div class="container">
+            <h3 class="section-title underline--left my-5">Features</h3>
+            <div class="feature py-4 d-flex"  id="pic-show5">
+              <div class="icon text-white bg-success mr-5">
+                <i class="fa fa-cog"></i>
+              </div>
+              <div class="text">
+                <h5>Customizable Identity Card</h5>
+                <p>Manage your personal, work identities easily.</p>
+              </div>
+            </div>
+
+            <div class="feature py-4 d-flex" id="pic-show2">
+              <div class="icon text-white bg-success mr-5">
+                <i class="fa fa-sign-in"></i>
+              </div>
+              <div class="text">
+                <h5>Single Sign On</h5>
+                <p>Auth card provides single sign on facility. Log on to various websites without having to signup , share information only if you want to and do so easily with full control..</p>
+              </div>
+            </div>
+
+            <div class="feature py-4 d-flex"  id="pic-show3">
+              <div class="icon text-white bg-success mr-5">
+                <i class="fa fa-address-card-o"></i>
+              </div>
+              <div class="text">
+                <h5>Exchange Business-Cards</h5>
+                <p>Exchange Blockchain based business cards securely when meeting new people at meetings, tradeshows, seminars,
+                  using app, email, whatsapp, contact number.</p>
+              </div>
+            </div>
+
+            <div class="feature py-4 d-flex"  id="pic-show4">
+              <div class="icon text-white bg-success mr-5">
+                <i class="fa fa-key"></i>
+              </div>
+              <div class="text">
+                <h5>Personal Access To Offices</h5>
+                <p>No need for the dangling cards around your neck anymore , just use your mobile phone to access offices.</p>
+              </div>
+            </div>
+            <!-- <div class="feature py-4 d-flex"  id="pic-show5">
+              <div class="icon text-white bg-success mr-5">
+                <i class="fa fa-street-view"></i>
+              </div>
+              <div class="text">
+                <h5>Access anytime and anywhere</h5>
+                <p>All your Authcards are stored in the Blockchain and synchronized across smartphones in real-time. </p>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- / Features Section -->
+
+  <!-- Testimonials Section 
+  <div class="testimonials section py-4" id="Testimonials">
+    <h3 class="section-title text-center m-5">Testimonials</h3>
+
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-md-4 testimonial text-center">
+
+          <div class="card mb-4">
+            <div class="card-body">
+
+              <i class="fa fa-quote-right" aria-hidden="true" style="font-size:30px;color:#333"></i>
+              <p class="card-text">Great way to create and keep all the cards that I acquire doing every day business operations, organized and
+                all in one place.</p>
+              <h5 class="mb-1">Aman Sanduja</h5>
+              <span class="text-muted d-block mb-2">Founder & CEO</span>
+            </div>
+
+          </div>
+          <div class="avatar rounded-circle with-shadows mb-3 ml-auto mr-auto">
+            <img src="images/common/avatar-1.jpg" class="w-100" alt="Testimonial Avatar" />
+          </div>
+        </div>
+
+        <div class="col-md-4 testimonial text-center">
+
+          <div class="card mb-4">
+            <div class="card-body">
+              <i class="fa fa-quote-right" aria-hidden="true" style="font-size:30px;color:#333"></i>
+              <p class="card-text">I hate searching for business cards. This is so easy to use and takes and keeps updated info in the shared
+                business cards and makes them searchable too. Great!</p>
+              <h5 class="mb-1">Vikas Pandey</h5>
+              <span class="text-muted d-block mb-2">Founder & V.P</span>
+            </div>
+
+          </div>
+          <div class="avatar rounded-circle with-shadows mb-3 ml-auto mr-auto">
+            <img src="images/common/vikas.png" class="w-100" alt="Testimonial Avatar" />
+          </div>
+        </div>
+        <div class="col-md-4 testimonial text-center">
+
+          <div class="card mb-4">
+            <div class="card-body">
+
+              <i class="fa fa-quote-right" aria-hidden="true" style="font-size:30px;color:#333"></i>
+              <p class="card-text">I love the quick access features. Now I can sign IN/OUT on various platforms using SSO card and in office without
+                carrying any physical card. Image from Android .</p>
+              <h5 class="mb-1">Kawal Arora</h5>
+              <span class="text-muted d-block mb-2">Founder & CTO</span>
+            </div>
+
+          </div>
+          <div class="avatar rounded-circle with-shadows mb-3 ml-auto mr-auto">
+            <img src="images/common/kawal.jpg" class="w-100" alt="Testimonial Avatar" />
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+ Testimonials Section -->
+
+  <!-- Our Blog Section
+  <div class="blog section section-invert py-4" id="Clients">
+    <h3 class="section-title text-center m-5">Our Bussiness Clients</h3>
+    <div class="container">
+      <div class="py-4">
+        <div class="row">
+          <div class="card-deck">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+              <div class="card mb-41">
+                <img class="card-img-top" src="images/common/logo-1.png" alt="Card image cap">
+                <!-- <div class="card-body">
+                      <h4 class="card-title">Find Great Places to Work While Travelling</h4>
+                      <p class="card-text">He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>
+                      <a class="btn btn-outline-success btn-pill" href="#">Read More &rarr;</a>
+                    </div> 
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+              <div class="card mb-41">
+                <img class="card-img-top" src="images/common/logo-1.png" alt="Card image cap">
+                <!-- <div class="card-body">
+                      <h4 class="card-title">Quick Tips for Improving Your Website's Design</h4>
+                      <p class="card-text">He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>
+                      <a class="btn btn-outline-success btn-pill" href="#">Read More &rarr;</a>
+                    </div>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+              <div class="card mb-41">
+                <img class="card-img-top" src="images/common/logo-1.png" alt="Card image cap">
+                <!-- <div class="card-body">
+                      <h4 class="card-title">A Designer's Tips While Travelling and Working</h4>
+                      <p class="card-text">He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>
+                      <a class="btn btn-outline-success btn-pill" href="#">Read More &rarr;</a>
+                    </div> 
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+              <div class="card mb-41">
+                <img class="card-img-top" src="images/common/logo-1.png" alt="Card image cap">
+                <!-- <div class="card-body">
+                        <h4 class="card-title">A Designer's Tips While Travelling and Working</h4>
+                        <p class="card-text">He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>
+                        <a class="btn btn-outline-success btn-pill" href="#">Read More &rarr;</a>
+                      </div> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ Our Blog Section -->
+
+  <!-- Subscribe Section -->
+  <div class="subscribe section bg-dark py-4" id="Newsletter">
+    <h3 class="section-title text-center text-white m-5">Newsletter</h3>
+    <p class="text-muted col-md-6 text-center mx-auto">The Authox newsletter contains information about the latest offerings, products and services powered by Authox. Subscribe
+      to our newsletter and stay updated on the latest developments and special offers!</p>
+    <form class="form-inline d-table mb-5 mx-auto" action="/">
+      <div class="form-group">
+        <input class="form-control border-0 mr-3 mb-2 mr-sm-0" type="text" placeholder="Email address">
+        <button class="btn btn-success mb-2" type="submit">Subscribe</button>
+      </div>
+    </form>
+  </div>
+  <!-- / Subscribe Section -->
+
+  <!-- Contact Section -->
+  <div class="contact section-invert py-4" id="Contact">
+    <h3 class="section-title text-center m-5">Contact Us</h3>
+    <div class="container py-4">
+      <div class="row justify-content-md-center px-4">
+        <div class="contact-form col-sm-12 col-md-10 col-lg-7 p-4 mb-41 card">
+          <form>
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label for="contactFormFullName">Full Name</label>
+                  <input type="email" class="form-control" id="contactFormFullName" placeholder="Enter your full name">
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label for="contactFormEmail">Email address</label>
+                  <input type="email" class="form-control" id="contactFormEmail" placeholder="Enter your email address">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Message</label>
+                  <textarea id="exampleInputEmail1" class="form-control mb-4" rows="10" placeholder="Enter your message..." name="message"></textarea>
+                </div>
+              </div>
+            </div>
+            <input class="btn btn-success btn-pill d-flex ml-auto mr-auto" type="submit" value="Send Your Message">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- / Contact Section -->
+
+  <!-- Footer Section -->
+  <footer>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Our Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Testimonials</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </footer>
+  <!-- / Footer Section -->
+
+  <!-- JavaScript Dependencies -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script>
+
+    function fade() {
+      $('#first').delay(8000).fadeOut().delay(10000).fadeIn();
+      $('#second').delay(10000).fadeIn().delay(5000).fadeOut();
+      // $('#third').delay(50000).fadeIn().delay(3000).fadeOut(fade);
+      return fade();
+    }
+
+
+  </script>
+  <script>
+    $(document).ready(function () {
+      $("#pic-show1").hover(function () {
+        $("#pic1").css("display", "block");
+        $("#pic2").css("display", "none");
+        $("#pic3").css("display", "none");
+        $("#pic4").css("display", "none");
+        $("#pic5").css("display", "none");
+      });
+      $("#pic-show2").hover(function () {
+        $("#pic1").css("display", "none");
+        $("#pic2").css("display", "block");
+        $("#pic3").css("display", "none");
+        $("#pic4").css("display", "none");
+        $("#pic5").css("display", "none");
+      });
+      $("#pic-show3").hover(function () {
+        $("#pic1").css("display", "none");
+        $("#pic2").css("display", "none");
+        $("#pic3").css("display", "block");
+        $("#pic4").css("display", "none");
+        $("#pic5").css("display", "none");
+      });
+      $("#pic-show4").hover(function () {
+        $("#pic1").css("display", "none");
+        $("#pic2").css("display", "none");
+        $("#pic3").css("display", "none");
+        $("#pic4").css("display", "block");
+        $("#pic5").css("display", "none");
+      });
+      $("#pic-show5").hover(function () {
+        $("#pic1").css("display", "none");
+        $("#pic2").css("display", "none");
+        $("#pic3").css("display", "none");
+        $("#pic4").css("display", "none");
+        $("#pic5").css("display", "block");
+      });
+    });
+
+(function ($) {
+    $(document).ready(function () {
+
+        $(".navbar").addClass('hideme');
+
+        $(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('.navbar').addClass('hideme');
+                } else {
+                    $('.navbar').removeClass('hideme');
+                }
+            });
+        });
+    });
+}(jQuery));
+
+
+
+$(function () {
+  $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+    $('.navbar').hover(function () {
+        $('.navbar').removeClass('hideme');
+    }, function () {
+        $('.navbar').addClass('hideme');
+    });
+}})
+});
+
+(function ($) {
+    $(document).ready(function () {
+
+        $(".navbar").addClass('hideme');
+        $(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('.navbar').addClass('hideme');
+                } else {
+                    $('.navbar').removeClass('hideme');
+                }
+            });
+        });
+    });
+}(jQuery));
+
+
+$(function () {
+ 
+        $('.navbar').removeClass('hideme');
+
+});
+  
+  
+  </script>
+</body>
+
+</html>
