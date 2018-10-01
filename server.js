@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+
+
 // create express app
 const app = express(),
       port = process.env.PORT || 3001;
@@ -22,6 +24,7 @@ app.use(function(req, res, next){
 //serving static assets
 app.use(express.static('public'));
 app.use('/uploads', express.static('uploads'));
+
 
 // file saving
 //app.use(multer({dest:'./uploads/'}));

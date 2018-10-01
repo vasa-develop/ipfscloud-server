@@ -1,6 +1,4 @@
 const multer = require('multer');
-const fs = require("fs");
-var content;
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
