@@ -8,8 +8,16 @@
             });
 
         }*/
-
+const upload = require("../../config/storage.js");
+const fs = require("fs");
+const ipfsAPI = require('ipfs-api');
+const unzip = require('unzip');
+const events = require('events');
+const rimraf = require('rimraf');
 const nodes = require('../../config/nodes.js');
+const eventEmitter = new events.EventEmitter();
+//svar random = require('../../lib/random.js')
+var content;
 
 exports.upload = function(req, res, next) {
 	res.send(nodes.ipfs_mumbai);
@@ -30,16 +38,7 @@ function readAndUploadFolder(req, res, name){
 
 
 
-const upload = require("../../config/storage.js");
-const fs = require("fs");
-const ipfsAPI = require('ipfs-api');
-const unzip = require('unzip');
-const events = require('events');
-const rimraf = require('rimraf');
-const nodes = require('../../config/nodes.js');
-const eventEmitter = new events.EventEmitter();
-//svar random = require('../../lib/random.js')
-var content;
+
 
 const ipfs_infura = ipfsAPI({'api-path': '/api/v0/', host: nodes.ipfs_infura, port: '5001', protocol: 'https'});
 /*const ipfs_mumbai = ipfsAPI({'api-path': '/api/v0/', host: nodes.ipfs_mumbai, port: '5001', protocol: 'https'});
