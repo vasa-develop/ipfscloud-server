@@ -41,7 +41,7 @@ exports.show = async function(req, res, next) {
 
 	
 ipfs.on('ready', async () => {
-	console.log("node is up!");
+console.log("node is up!");
   const orbitdb = new OrbitDB(ipfs)
   const db = await orbitdb.keyvalue('first-database')
   await db.put('name', 'hello')
