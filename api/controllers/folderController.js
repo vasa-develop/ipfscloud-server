@@ -8,6 +8,8 @@
             });
 
         }*/
+
+        
 const ipfsAPI = require('ipfs-api');
 const IPFSecret = require('ipfsecret');
 const fs = require('fs');
@@ -89,7 +91,7 @@ exports.upload = function(req, res, next) {
 		    console.log("It's saved!");
 		    if(uploadsCompleted == files.length){
 		    	console.log("path: "+filePath);
-		    	uploadToIpfs(filePath, res);
+		    	uploadToIpfs(filePath, details, res);
 		    }
 		});
 
@@ -173,11 +175,26 @@ exports.secretUpload = function(req, res, next) {
 	
 }
 
-function uploadToIpfs(_filePath, res){
+function uploadToIpfs(_filePath, details, res){
 	console.log("IPFSCLOUD: "+_filePath);
 	ipfs_infura.util.addFromFs(_filePath, { recursive: true }, (err, result) => {
       if (err) { throw err }
       
+      detailsObj = {};
+
+      for(var i=0; i<details.length;i++){
+      	detailsObj[details[i].fullPath] = details[i];
+      }
+
+      for(var j=0; j<result.length;j++){
+      	if(detailsObj["/"+result[j].path]){
+      		result[j].contentType = detailsObj["/"+result[j].path].type;
+      	}
+      	else{
+      		result[j].contentType = "clusterlabs.ipfscloud/folder";
+      	}
+      }
+
       res.json({"result": result});
 
 
@@ -195,28 +212,26 @@ function uploadToIpfs(_filePath, res){
 }
 
 function uploadToIpfsSecret(_filePath, secret, res){
-	var _root = "/home/vasa/Desktop/Pet_projects/ipfscloud-pngs/ipfs_server/";
 
 	ipfsecret.addIndexed(_filePath, {passphrase: secret , suffix: 'crypt'})
       .then(results => {
+
       	res.json({"result": results});
       	
       		
-	      	ipfs_infura.pin.add(results[results.length-1].hash, function (_err, _res){
-	            if(_err){
+	    ipfs_infura.pin.add(results[results.length-1].hash, function (_err, _res){
+	         if(_err){
 	              
-	              console.log(_err);
-	            }
-	            else{
+	           console.log(_err);
+	         }
+	         else{
 	              
-	              console.log(_res);
+	           console.log(_res);
 	              
-	            }
-	           });
+	         }
+	        });
       	
       	rimraf(_filePath, function () { console.log('done'); });
-
-
 
       })
       .catch(error =>{
