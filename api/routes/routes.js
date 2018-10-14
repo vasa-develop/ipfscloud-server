@@ -26,9 +26,9 @@ module.exports = function(app) {
  app.route('/folder/private')
    .post(upload.any(), folder.secretUpload);
 
- /*app.route('/folder/private/:info')
+ app.route('/folder/:id')
    .get(folder.getFolder);
-*/
+
 
  app.route('/email')
    .post(share.sendEmail);

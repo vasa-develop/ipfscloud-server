@@ -13,6 +13,7 @@
 const ipfsAPI = require('ipfs-api');
 const IPFSecret = require('ipfsecret');
 const fs = require('fs');
+const zipFolder = require('zip-folder');
 const unzip = require('unzip');
 const events = require('events');
 const rimraf = require('rimraf');
@@ -241,4 +242,60 @@ function uploadToIpfsSecret(_filePath, secret, res){
 }
 
 
+//////////////////
 
+exports.getFolder = function(req, res, next) {
+	const validCID = req.params.id;
+
+	var count = 0;
+
+	ipfs_infura.files.get(validCID)
+	.then((data)=>{
+		data.forEach((x)=>{
+			count++;
+			//if the object is a file
+			if(x.content){
+				var dirStructure = x.path.split("/");
+				dirStructure.pop();
+				var dirPath = "";
+				dirStructure.forEach((dir)=>{
+					dirPath = dirPath + dir + "/";
+					if (!fs.existsSync(dirPath)){
+					    fs.mkdirSync(dirPath);
+					}
+				});
+				fs.writeFile(x.path, x.content.data, { flag: 'w' }, function (err) {
+				    if (err) {throw err;}
+				    else{
+				    	if(count == data.length){
+				    		zipFolder(x.path.split("/")[0], x.path.split("/")[0]+".zip", function(err) {
+							    if(err) {
+							        console.log('Error while zipping folder: ', err);
+							    } else {
+							        fs.readFile(x.path.split("/")[0]+".zip", function(err, data){
+									    if(err) {throw err;}
+									    else{
+									    	res.setHeader('content-type', 'application/zip');
+									    	res.send(data);
+									    	/*fs.unlink(x.path.split("/")[0]+".zip", (err) => {
+											  if (err) throw err;
+											});
+									    	rimraf(x.path.split("/")[0], function () { console.log('done'); });*/
+									    }
+									    
+									});
+							    }
+							});
+				    	}
+				    }
+				});
+			}
+			//if the object is a folder
+			else{
+				if (!fs.existsSync(x.path)){
+				    fs.mkdirSync(x.path);
+				}
+			}
+		});
+	});
+}
