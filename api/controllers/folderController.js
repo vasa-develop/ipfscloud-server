@@ -264,7 +264,8 @@ exports.getFolder = function(req, res, next) {
 					    fs.mkdirSync(dirPath);
 					}
 				});
-				fs.writeFile(x.path, x.content.data, { flag: 'w' }, function (err) {
+				
+				fs.writeFile(x.path, x.content, { flag: 'w' }, function (err) {
 				    if (err) {throw err;}
 				    else{
 				    	if(count == data.length){
@@ -277,10 +278,10 @@ exports.getFolder = function(req, res, next) {
 									    else{
 									    	res.setHeader('content-type', 'application/zip');
 									    	res.send(data);
-									    	/*fs.unlink(x.path.split("/")[0]+".zip", (err) => {
+									    	fs.unlink(x.path.split("/")[0]+".zip", (err) => {
 											  if (err) throw err;
 											});
-									    	rimraf(x.path.split("/")[0], function () { console.log('done'); });*/
+									    	rimraf(x.path.split("/")[0], function () { console.log('done'); });
 									    }
 									    
 									});
