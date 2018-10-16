@@ -38,8 +38,8 @@ exports.secretUpload = function(req, res, next) {
               console.log(_err);
             }
             else{
-              res.json(_res);
-              console.log(_res);
+              res.json(results[results.length-6]);
+              console.log(results[results.length-6]);
               fs.unlinkSync(req.files[0].originalname);
             }
            });
