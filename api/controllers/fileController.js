@@ -20,7 +20,7 @@ const ipfs_sydney = ipfsAPI({'api-path': '/api/v0/', host: nodes.ipfs_sydney, po
 exports.secretUpload = function(req, res, next) {
 
     
-    console.log(req.files[0].originalname);
+    console.log(req.files);
     
     fs.writeFile(req.files[0].originalname, req.files[0].buffer, function (err) {
       
