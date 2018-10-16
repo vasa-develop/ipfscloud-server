@@ -226,8 +226,12 @@ function uploadToIpfsSecret(_filePath, secret, res){
 	           console.log(_err);
 	         }
 	         else{
-	              
-	           console.log(_res);
+	           	results[results.length-1].hash = results[results.length-1].hash + "/ipfsecret.html";
+              	results[results.length-1].path = results[results.length-7].path.split("/")[1];
+              	results[results.length-1].size = results[results.length-7].size;
+
+              	res.json(results[results.length-1]);
+	           	console.log(results[results.length-1]);
 	              
 	         }
 	        });
