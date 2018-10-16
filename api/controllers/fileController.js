@@ -39,6 +39,9 @@ exports.secretUpload = function(req, res, next) {
             }
             else{
               results[results.length-1].hash = results[results.length-1].hash + "/ipfsecret.html";
+              results[results.length-1].path = results[results.length-8].path.split("/")[1];
+              results[results.length-1].size = results[results.length-8].size;
+
               res.json(results[results.length-1]);
               console.log(results[results.length-1]);
               fs.unlinkSync(req.files[0].originalname);
