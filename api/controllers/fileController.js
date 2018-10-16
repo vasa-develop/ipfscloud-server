@@ -38,9 +38,10 @@ exports.secretUpload = function(req, res, next) {
               console.log(_err);
             }
             else{
+
               results[results.length-1].hash = results[results.length-1].hash + "/ipfsecret.html";
-              results[results.length-1].path = results[results.length-8].path.split("/")[1];
-              results[results.length-1].size = results[results.length-8].size;
+              results[results.length-1].path = results[results.length-7].path.split("/")[1];
+              results[results.length-1].size = results[results.length-7].size;
 
               res.json(results[results.length-1]);
               console.log(results[results.length-1]);
