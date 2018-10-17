@@ -225,8 +225,8 @@ function uploadToIpfsSecret(_filePath, secret, res){
 	         }
 	         else{
 	           	results[results.length-1].hash = results[results.length-1].hash + "/ipfsecret.html";
-              	results[results.length-1].path = results[results.length-7].path.split("/")[1];
-              	results[results.length-1].size = results[results.length-7].size;
+              	results[results.length-1].path = _filePath;
+              	results[results.length-1].size = results[results.length-1].size;
               	results[results.length-1].contentType = "text/html"
 
               	res.json(results[results.length-1]);
