@@ -216,7 +216,7 @@ function uploadToIpfsSecret(_filePath, secret, res){
       .then(results => {
 
       	//res.json({"result": results});
-      	
+      	console.log(results);
       		
 	    ipfs_infura.pin.add(results[results.length-1].hash, function (_err, _res){
 	         if(_err){
