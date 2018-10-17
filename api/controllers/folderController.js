@@ -212,13 +212,13 @@ function uploadToIpfs(_filePath, details, res){
 
 function uploadToIpfsSecret(_filePath, secret, res){
 
-	ipfsecret.add(_filePath, {passphrase: secret , suffix: 'crypt'})
+	ipfsecret.addIndexed(_filePath, {passphrase: secret , suffix: 'crypt'})
       .then(results => {
 
       	res.json({"result": results});
       	
       		
-	    /*ipfs_infura.pin.add(results[results.length-1].hash, function (_err, _res){
+	    ipfs_infura.pin.add(results[results.length-1].hash, function (_err, _res){
 	         if(_err){
 	              
 	           console.log(_err);
@@ -232,7 +232,7 @@ function uploadToIpfsSecret(_filePath, secret, res){
 	           	console.log(results[results.length-1]);
 	              
 	         }
-	        });*/
+	        });
       	
       	rimraf(_filePath, function () { console.log('done'); });
 
