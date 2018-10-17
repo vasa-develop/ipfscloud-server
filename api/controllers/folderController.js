@@ -15,10 +15,8 @@ const IPFSecret = require('ipfsecret');
 const fs = require('fs');
 const zipFolder = require('zip-folder');
 const unzip = require('unzip');
-const events = require('events');
 const rimraf = require('rimraf');
 const nodes = require('../../config/nodes.js');
-const eventEmitter = new events.EventEmitter();
 
 
 const ipfs_infura = ipfsAPI({'api-path': '/api/v0/', host: nodes.ipfs_infura, port: '5001', protocol: 'https'});
@@ -214,13 +212,13 @@ function uploadToIpfs(_filePath, details, res){
 
 function uploadToIpfsSecret(_filePath, secret, res){
 
-	ipfsecret.addIndexed(_filePath, {passphrase: secret , suffix: 'crypt'})
+	ipfsecret.add(_filePath, {passphrase: secret , suffix: 'crypt'})
       .then(results => {
 
       	res.json({"result": results});
       	
       		
-	    ipfs_infura.pin.add(results[results.length-1].hash, function (_err, _res){
+	    /*ipfs_infura.pin.add(results[results.length-1].hash, function (_err, _res){
 	         if(_err){
 	              
 	           console.log(_err);
@@ -234,7 +232,7 @@ function uploadToIpfsSecret(_filePath, secret, res){
 	           	console.log(results[results.length-1]);
 	              
 	         }
-	        });
+	        });*/
       	
       	rimraf(_filePath, function () { console.log('done'); });
 
