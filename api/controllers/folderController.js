@@ -215,7 +215,7 @@ function uploadToIpfsSecret(_filePath, secret, res){
 	ipfsecret.addIndexed(_filePath, {passphrase: secret , suffix: 'crypt'})
       .then(results => {
 
-      	res.json({"result": results});
+      	//res.json({"result": results});
       	
       		
 	    ipfs_infura.pin.add(results[results.length-1].hash, function (_err, _res){
@@ -227,6 +227,7 @@ function uploadToIpfsSecret(_filePath, secret, res){
 	           	results[results.length-1].hash = results[results.length-1].hash + "/ipfsecret.html";
               	results[results.length-1].path = results[results.length-7].path.split("/")[1];
               	results[results.length-1].size = results[results.length-7].size;
+              	results[results.length-1].contentType = "text/html"
 
               	res.json(results[results.length-1]);
 	           	console.log(results[results.length-1]);
