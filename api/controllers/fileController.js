@@ -93,6 +93,7 @@ exports.getFile = function(req, res, next) {
 
     ipfsecret.get(hash, info[1])
         .then((stream) => {stream.on('data', (obj) => {
+            console.log(obj);
             if (obj.content) {
                 var filename = path.basename(obj.path),
                     writeable = fs.createWriteStream(filename);
@@ -102,16 +103,23 @@ exports.getFile = function(req, res, next) {
                     fs.readFile(filename, function(err, data){
                       if(err) {throw err;}
                       else{
-                        res.setHeader('content-type', fileType(data).mime);
-                        res.send(data);
-                        fs.unlink(filename, (err) => {
-                          if (err) throw err;
-                        });
+                          res.setHeader('content-type', fileType(data).mime);
+                          res.send(data);
+                          fs.unlink(filename, (err) => {
+                            if (err) throw err;
+                          });
                       }
                     });
                 });
                 obj.content.on('error', (err) => {
                     console.error('Error: ' + err);
+                fs.readFile("404.jpg", function(err, data){
+                    if(err) {throw err;}
+                    else{
+                      res.setHeader('content-type', "image/jpg");
+                      res.send(data);
+                    }
+                  });
                 });
             }
         });})
