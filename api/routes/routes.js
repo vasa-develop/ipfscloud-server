@@ -17,8 +17,8 @@ module.exports = function(app) {
  app.route('/file/private')
     .post(upload.any(), file.secretUpload);
 
- /*app.route('/file/private/:info')
-    .get(file.getFile);*/
+ app.route('/file/private/:info')
+    .get(file.getFile);
 
  app.route('/folder')
  	.post(upload.any(), folder.upload);

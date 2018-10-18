@@ -1,12 +1,13 @@
 const ipfsAPI = require('ipfs-api');
 const IPFSecret = require('ipfsecret');
-const ipfsSecret = require('ipfsecret');
 const unzip = require('unzip');
 const events = require('events');
 const rimraf = require('rimraf');
 const nodes = require('../../config/nodes.js');
 const fs = require('fs');
 const path = require('path');
+
+const fileType = require('file-type');
 
 const ipfs_infura = ipfsAPI({'api-path': '/api/v0/', host: nodes.ipfs_infura, port: '5001', protocol: 'https'});
 const ipfsecret = new IPFSecret({ host: nodes.ipfs_infura,  port: 5001, proto: 'https' });
@@ -28,7 +29,7 @@ exports.secretUpload = function(req, res, next) {
         res.json(err);
         console.log(err);
       }
-      ipfsecret.addIndexed(req.files[0].originalname, {passphrase: req.body.key , suffix: 'crypt'})
+      ipfsecret.add(req.files[0].originalname, {passphrase: req.body.key , suffix: 'crypt'})
       .then(results => {
           console.log(results);
 
@@ -38,14 +39,14 @@ exports.secretUpload = function(req, res, next) {
               console.log(_err);
             }
             else{
-
-              results[results.length-1].hash = results[results.length-1].hash + "/ipfsecret.html";
+              res.json(_res);
+              /*results[results.length-1].hash = results[results.length-1].hash + "/ipfsecret.html";
               results[results.length-1].path = results[results.length-7].path.split("/")[1];
               results[results.length-1].size = results[results.length-7].size;
 
               res.json(results[results.length-1]);
               console.log(results[results.length-1]);
-              fs.unlinkSync(req.files[0].originalname);
+              fs.unlinkSync(req.files[0].originalname);*/
             }
            });
       })
@@ -93,37 +94,26 @@ exports.getFile = function(req, res, next) {
 
     var info = req.params.info.split('~');
     var hash = info[0];
- 
-    
-    console.log("hash: "+info[0], "secret: "+info[1])
+
 
     ipfsecret.get(hash, info[1])
         .then((stream) => {stream.on('data', (obj) => {
             if (obj.content) {
-
-              /*fetch('https://assets-cdn.github.com/images/modules/logos_page/Octocat.png')
-              .then(res => {
-                  return new Promise((resolve, reject) => {
-                      const dest = fs.createWriteStream('./octocat.png');
-                      res.body.pipe(dest);
-                      res.body.on('error', err => {
-                          reject(err);
-                      });
-                      dest.on('finish', () => {
-                          resolve();
-                      });
-                      dest.on('error', err => {
-                          reject(err);
-                      });
-                  });
-              });*/
-
                 var filename = path.basename(obj.path),
                     writeable = fs.createWriteStream(filename);
                 obj.content.pipe(writeable);
                 obj.content.on('finish', () => {
                     console.log('Wrote ' + filename);
-                    fs.createReadStream(filename).pipe(response);
+                    fs.readFile(filename, function(err, data){
+                      if(err) {throw err;}
+                      else{
+                        res.setHeader('content-type', fileType(data).mime);
+                        res.send(data);
+                        fs.unlink(filename, (err) => {
+                          if (err) throw err;
+                        });
+                      }
+                    });
                 });
                 obj.content.on('error', (err) => {
                     console.error('Error: ' + err);
