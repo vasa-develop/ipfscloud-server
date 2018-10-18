@@ -33,20 +33,15 @@ exports.secretUpload = function(req, res, next) {
       .then(results => {
           console.log(results);
 
+          res.json(results);
+
           ipfs_infura.pin.add(results[results.length-1].hash, function (_err, _res){
             if(_err){
               res.json(_err);
               console.log(_err);
             }
             else{
-              res.json(_res);
-              /*results[results.length-1].hash = results[results.length-1].hash + "/ipfsecret.html";
-              results[results.length-1].path = results[results.length-7].path.split("/")[1];
-              results[results.length-1].size = results[results.length-7].size;
-
-              res.json(results[results.length-1]);
-              console.log(results[results.length-1]);
-              fs.unlinkSync(req.files[0].originalname);*/
+              fs.unlinkSync(req.files[0].originalname);
             }
            });
       })
