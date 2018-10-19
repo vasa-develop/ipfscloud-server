@@ -2,6 +2,7 @@
 const file = require('../controllers/fileController.js');
 const folder = require('../controllers/folderController.js');
 const share = require('../controllers/shareController.js');
+const search = require('../controllers/searchController.js');
 /*const orbit_keyvalue = require('../controllers/orbitKeyValueController.js');*/
 const multer  = require('multer');
 var storage = multer.memoryStorage();
@@ -36,6 +37,14 @@ module.exports = function(app) {
 
 /* app.route('/orbit/keyvalue')
  	.get(orbit_keyvalue.show)*/
+
+
+ //searching objects on IPFS (Thanks to https://github.com/ipfs-search/ipfs-search)
+ app.route('/search')
+   .get(search.search);
+
+ app.route('/metadata/:id')
+ 	.get(search.metadata);
 
  app.route('/')
 

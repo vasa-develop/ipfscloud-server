@@ -26,6 +26,7 @@
     "ipfsecret": "^0.1.4",
     "multer": "^1.4.0",
     "node-cmd": "^3.0.0",
+    "node-fetch": "^2.2.0",
     "node-stream-zip": "^1.7.0",
     "orbit-db": "^0.19.9",
     "os": "^0.1.1",
