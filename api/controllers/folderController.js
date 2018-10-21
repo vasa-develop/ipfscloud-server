@@ -23,6 +23,7 @@ const ipfs_infura = ipfsAPI({'api-path': '/api/v0/', host: nodes.ipfs_infura, po
 const ipfsecret = new IPFSecret({ host: nodes.ipfs_infura,  port: 5001, proto: 'https' });
 
 
+
 /*const ipfs_mumbai = ipfsAPI({'api-path': '/api/v0/', host: nodes.ipfs_mumbai, port: '5001', protocol: 'https'});
 const ipfs_virginia = ipfsAPI({'api-path': '/api/v0/', host: nodes.ipfs_virginia, port: '5001', protocol: 'https'});
 const ipfs_california = ipfsAPI({'api-path': '/api/v0/', host: nodes.ipfs_california, port: '5001', protocol: 'https'});
@@ -301,5 +302,18 @@ exports.getFolder = function(req, res, next) {
 				}
 			}
 		});
+	});
+}
+
+
+exports.ls = function(req, res, next) {
+	console.log(req.params.id);
+	ipfs_infura.ls(req.params.id, function (err, files) {
+		console.log(files);
+		
+	  /*files.forEach((file) => {
+	    console.log(file.path)
+	  });*/
+	  res.json("vasa");
 	});
 }

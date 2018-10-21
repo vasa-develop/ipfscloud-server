@@ -1,0 +1,60 @@
+swagger: '2.0'
+info:
+  description: | 
+    This is the documentation by IpfsCloud,
+    a decentralized, anonymous and open storage solution
+    
+    Beta Application [ipfscloud.store](http://ipfscloud.store)
+    
+    Find more about IpfsCloud [here](http://clusterlabs.io).
+  version: 0.0.1
+  title: Swagger Petstore
+  contact:
+    email: vasa@towardsblockchain.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+# host: petstore.swagger.io
+# basePath: /v2
+tags:
+- name: pet
+  description: Everything about your Pets
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+- name: store
+  description: Access to Petstore orders
+- name: user
+  description: Operations about user
+  externalDocs:
+    description: Find out more about our store
+    url: http://swagger.io
+schemes:
+  - http
+paths:
+  /pet:
+    get:
+      tags:
+        - pet
+      summary: Add a new pet to the store
+      x-swagger-router-controller: SampleController
+      description: ""
+      operationId: addPet
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Pet object that needs to be added to the store
+          required: false
+      responses:
+        "405":
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - "write:pets"
+            - "read:pets"

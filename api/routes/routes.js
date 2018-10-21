@@ -13,7 +13,7 @@ var upload = multer({ storage: storage });
 module.exports = function(app) {
 
  app.route('/file')
-    .post(upload.single('profile-pic'), file.upload);
+    .post(upload.single('file'), file.upload);
 
  app.route('/file/private')
     .post(upload.any(), file.secretUpload);
@@ -30,6 +30,8 @@ module.exports = function(app) {
  app.route('/folder/:id')
    .get(folder.getFolder);
 
+ app.route('/folder/ls/:id')
+ 	.get(folder.ls);
 
  app.route('/email')
    .post(share.sendEmail);
