@@ -1,12 +1,7 @@
 swagger: '2.0'
 info:
   description: | 
-    This is the documentation by IpfsCloud,
-    a decentralized, anonymous and open storage solution
-    
-    Beta Application [ipfscloud.store](http://ipfscloud.store)
-    
-    Find more about IpfsCloud [here](http://clusterlabs.io).
+    ed
   version: 0.0.1
   title: Swagger Petstore
   contact:

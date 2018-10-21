@@ -29,10 +29,12 @@ exports.secretUpload = function(req, res, next) {
         res.json(err);
         console.log(err);
       }
+
+      if(!req.body.key){
+        res.send({"Error": "key field is required"});
+      }
       ipfsecret.add(req.files[0].originalname, {passphrase: req.body.key , suffix: 'crypt'})
       .then(results => {
-          console.log(results);
-
           res.json(results);
 
           ipfs_infura.pin.add(results[results.length-1].hash, function (_err, _res){
