@@ -131,3 +131,12 @@ exports.getFile = function(req, res, next) {
 };
 
 
+exports.delete = function(req, res, next) {
+
+  ipfs_infura.pin.rm(req.body.id, function (err, pinset) {
+  if (err) {
+    throw err
+  }
+  res.json(pinset); //prints the hashes that were unpinned
+})
+}

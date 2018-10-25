@@ -33,6 +33,10 @@ module.exports = function(app) {
  app.route('/folder/ls/:id')
  	.get(folder.ls);
 
+ //DELETES BOTH FILE AND FOLDER
+ app.route('/delete')
+ 	.post(file.delete);
+
  app.route('/email')
    .post(share.sendEmail);
 

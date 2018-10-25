@@ -1,7 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-
+const https = require("https");
+const fs = require("fs");
+const options = {
+  key: fs.readFileSync("ipfscloud.pem"),
+  cert: fs.readFileSync("c853581ba0ab75ec.crt")
+};
 
 // create express app
 const app = express(),
@@ -47,3 +52,5 @@ app.use(function(err, req, res, next){
 app.listen(port,'0.0.0.0', () => {
     console.log("Server is listening on port 3001");
 });
+
+https.createServer(options, app).listen(8081);

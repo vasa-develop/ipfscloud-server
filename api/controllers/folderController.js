@@ -91,7 +91,7 @@ exports.upload = function(req, res, next) {
 		    console.log("It's saved!");
 		    if(uploadsCompleted == files.length){
 		    	console.log("path: "+filePath);
-		    	uploadToIpfs(filePath, details, res);
+		    	uploadToIpfs(filePath, details, res, useFullPath);
 		    }
 		});
 
@@ -175,16 +175,24 @@ exports.secretUpload = function(req, res, next) {
 	
 }
 
-function uploadToIpfs(_filePath, details, res){
+function uploadToIpfs(_filePath, details, res, useFullPath){
 	console.log("IPFSCLOUD: "+_filePath);
 	ipfs_infura.util.addFromFs(_filePath, { recursive: true }, (err, result) => {
       if (err) { throw err }
       
       detailsObj = {};
 
-      for(var i=0; i<details.length;i++){
+  	if(useFullPath){
+  		for(var i=0; i<details.length;i++){
       	detailsObj[details[i].fullPath] = details[i];
       }
+  	}
+  	else{
+  		for(var i=0; i<details.length;i++){
+      	detailsObj["/"+details[i].webkitRelativePath] = details[i];
+      }
+  	}
+      
 
       for(var j=0; j<result.length;j++){
       	if(detailsObj["/"+result[j].path]){
