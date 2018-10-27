@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const https = require("https");
 const fs = require("fs");
 const options = {
-  key: fs.readFileSync("ipfscloud.pem"),
-  cert: fs.readFileSync("c853581ba0ab75ec.crt")
+  key: fs.readFileSync("/home/ipfscloud/.acme.sh/*.ipfscloud.store/*.ipfscloud.store.key"),
+  cert: fs.readFileSync("/home/ipfscloud/.acme.sh/*.ipfscloud.store/*.ipfscloud.store.cer")
 };
 
 // create express app
