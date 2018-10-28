@@ -61,3 +61,24 @@ exports.redirect = function(req, res, next) {
 	    
 	});
 }
+
+exports.isValidURL = function(req, res, next) {
+	fs.readFile('sites.txt','utf8', function read(err, data) {
+	    if (err) {
+	        res.json(err);
+	    }
+
+	    var content = data.split(",");
+	    var url = req.originalUrl.substring(6,req.originalUrl.length)
+	    for(var i = 0; i < content.length; i++){
+
+	    	if(content[i] == url){
+  				res.json("result":"true");
+  				break;
+	    	}
+	    }
+
+	    res.json({"result":"false"})
+	    
+	});
+}

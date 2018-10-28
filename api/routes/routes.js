@@ -45,7 +45,8 @@ module.exports = function(app) {
    .get(host.redirect);
 
  app.route('/host')
-   .post(upload.any(), host.upload);	
+   .post(upload.any(), host.upload);
+   .get(host.isValidURL)
 /* app.route('/orbit/keyvalue')
  	.get(orbit_keyvalue.show)*/
 
