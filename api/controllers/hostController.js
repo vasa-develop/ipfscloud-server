@@ -68,17 +68,19 @@ exports.isValidURL = function(req, res, next) {
 	        res.json(err);
 	    }
 
+	    var lock = true;
 	    var content = data.split(",");
 	    var url = req.query.url;
 	    for(var i = 0; i < content.length; i++){
 
 	    	if(content[i] == url){
-  				res.json("result":"true");
+  				res.json({"result":"true"});
+  				lock = false;
   				break;
 	    	}
 	    }
-
-	    res.json({"result":"false"})
-	    
+	    if(lock){
+	    	res.json({"result":"false"})
+	    }
 	});
 }
