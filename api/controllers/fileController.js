@@ -2,7 +2,6 @@ const ipfsAPI = require('ipfs-api');
 const IPFSecret = require('ipfsecret');
 const unzip = require('unzip');
 const events = require('events');
-const rimraf = require('rimraf');
 const nodes = require('../../config/nodes.js');
 const fs = require('fs');
 const path = require('path');

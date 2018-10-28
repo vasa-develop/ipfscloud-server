@@ -3,6 +3,7 @@ const file = require('../controllers/fileController.js');
 const folder = require('../controllers/folderController.js');
 const share = require('../controllers/shareController.js');
 const search = require('../controllers/searchController.js');
+const host = require('../controllers/hostController.js');
 /*const orbit_keyvalue = require('../controllers/orbitKeyValueController.js');*/
 const multer  = require('multer');
 var storage = multer.memoryStorage();
@@ -40,7 +41,11 @@ module.exports = function(app) {
  app.route('/email')
    .post(share.sendEmail);
 
+ app.route('/host/:url')
+   .get(host.redirect);
 
+ app.route('/host')
+   .post(upload.any(), host.upload);	
 /* app.route('/orbit/keyvalue')
  	.get(orbit_keyvalue.show)*/
 
