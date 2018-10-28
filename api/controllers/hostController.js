@@ -69,7 +69,7 @@ exports.isValidURL = function(req, res, next) {
 	    }
 
 	    var content = data.split(",");
-	    var url = req.originalUrl.substring(6,req.originalUrl.length)
+	    var url = req.query.url;
 	    for(var i = 0; i < content.length; i++){
 
 	    	if(content[i] == url){
