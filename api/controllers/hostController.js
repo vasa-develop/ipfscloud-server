@@ -57,7 +57,7 @@ exports.redirect = function(req, res, next) {
 	    	}
 	    }
 
-	    res.json({"message":"URL https://ipfscloud.store/host/"+url+" doesn't exist."})
+	    res.json({"message":"URL https://api.ipfscloud.store/host/"+url+" doesn't exist."})
 	    
 	});
 }
