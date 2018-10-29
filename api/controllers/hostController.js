@@ -27,7 +27,7 @@ exports.upload = function(req, res, next) {
 	      			fs.appendFile('sites.txt', fileName+","+result[result.length-1].hash+",", function (err) {
 					  if (err) throw err;
 					  console.log('Saved!');
-					  rimraf(fileName+"/"+req.files[0].originalname.substring(0,req.files[0].originalname.length-4), function () { console.log('done'); });
+					  rimraf(fileName, function () { console.log('done'); });
 					  fs.unlinkSync(req.files[0].originalname);
 					});
 	      		}
