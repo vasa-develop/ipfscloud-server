@@ -4,6 +4,7 @@ const folder = require('../controllers/folderController.js');
 const share = require('../controllers/shareController.js');
 const search = require('../controllers/searchController.js');
 const host = require('../controllers/hostController.js');
+const key = require('../controllers/apiKeyController.js');
 /*const orbit_keyvalue = require('../controllers/orbitKeyValueController.js');*/
 const multer  = require('multer');
 var storage = multer.memoryStorage();
@@ -57,6 +58,11 @@ module.exports = function(app) {
 
  app.route('/metadata/:id')
  	.get(search.metadata);
+
+
+ //TODO: add authorization check for the masterKey. Only the masterKey has control over this route.
+ app.route('/apiKey/create')
+  .post(key.createKey);
 
  app.route('/')
 

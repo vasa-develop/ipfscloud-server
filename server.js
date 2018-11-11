@@ -1,16 +1,70 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+//const OrbitDB = require('orbit-db');
+//const nodes = require('../../config/nodes.js');
+//const ipfsAPI = require('ipfs-api');
 
+
+//const ipfs = ipfsAPI({'api-path': '/api/v0/', host: nodes.ipfs_california, port: '5001', protocol: 'https'});
+const mongoose = require('mongoose');
+const API_Keys = require('./api/models/keysModel.model');
 const https = require("https");
 const fs = require("fs");
 const options = {
-  key: fs.readFileSync("/home/ipfscloud/.acme.sh/*.ipfscloud.store/*.ipfscloud.store.key"),
-  cert: fs.readFileSync("/home/ipfscloud/.acme.sh/*.ipfscloud.store/*.ipfscloud.store.cer")
+ // key: fs.readFileSync("/home/ipfscloud/.acme.sh/*.ipfscloud.store/*.ipfscloud.store.key"),
+ //cert: fs.readFileSync("/home/ipfscloud/.acme.sh/*.ipfscloud.store/*.ipfscloud.store.cer")
 };
 
 // create express app
 const app = express(),
       port = process.env.PORT || 3001;
+
+
+	//OrbitDB
+
+	/*const orbitdb = new OrbitDB(ipfs);
+  	const db = await orbitdb.log('database name');
+  	// Add an entry to the database
+  	const hash = await db.add('hello world');
+  	// Get last 5 entries
+  	const latest = db.iterator({ limit: 5 }).collect();
+  	console.log(JSON.stringify(latest, null, 2));
+
+  	//Intializing kvStore.
+  	const kv = orbitdb.kvstore('API_Keys');
+
+  	kv.events.on('ready', () => {
+	  console.log(kv.get('volume'));
+	  // 100
+	})
+
+
+	kv.put('volume', '100')
+	  .then(() => {
+	    console.log(kv.get('volume'))
+	    // 100
+	  })*/
+
+//MongoCode
+
+//Set up default mongoose connection
+var mongoDB = 'mongodb://vasa.ipfscloud:CtVcIsd5@ds215370.mlab.com:15370/tokens';
+mongoose.connect(mongoDB, { useNewUrlParser: true }, (err)=>{
+	if(err){
+		console.log("MongoDB failed to connect.");
+	}
+	else{
+		console.log("database connected!");
+	}
+});
+// Get Mongoose to use the global promise library
+mongoose.Promise = global.Promise;
+//Get the default connection
+var db = mongoose.connection;
+
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
 
 
 // parse requests of content-type - application/x-www-form-urlencoded
@@ -22,7 +76,7 @@ app.use(bodyParser.json({limit: '500mb'}))
 // allow access control origin and headers
 app.use(function(req, res, next){
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
