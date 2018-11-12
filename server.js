@@ -48,7 +48,7 @@ const app = express(),
 //MongoCode
 
 //Set up default mongoose connection
-var mongoDB = 'mongodb://vasa.ipfscloud:CtVcIsd5@ds215370.mlab.com:15370/tokens';
+var mongoDB = 'mongodb://'+process.env.DB_USER+':'+process.env.DB_PASS+'@ds215370.mlab.com:15370/tokens';
 mongoose.connect(mongoDB, { useNewUrlParser: true }, (err)=>{
 	if(err){
 		console.log("MongoDB failed to connect.");
@@ -76,13 +76,50 @@ app.use(bodyParser.json({limit: '500mb'}))
 // allow access control origin and headers
 app.use(function(req, res, next){
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "authorization");
+    res.header("Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
 //serving static assets
 app.use(express.static('public'));
 app.use('/uploads', express.static('uploads'));
+
+
+var authenticate = function (req, res, next) {
+
+	var header=req.headers['authorization']||'',        // get the header
+    token=header.split(/\s+/).pop()||'',            // and the encoded auth token
+    auth=new Buffer.from(token, 'base64').toString(),    // convert from base64
+    parts=auth.split(/:/),                          // split on colon
+    password=parts[1];
+
+    
+    if(!password){
+    	res.status(401);
+    	res.send("No API_KEY found in authorization header. Visit https://ipfscloud.store/docs/v1 to get an API_KEY.");
+    }
+    else{
+    	API_Keys.find({
+    	'API_KEY': password
+	    }).exec((err, result)=>{
+	    	if(result.length<=0){
+	    		res.status(401);
+	    		res.send("Invalid API_KEY");
+		    }
+		    else if(result.isActive){
+		    	res.status(401);
+		    	res.json("InActive API_KEY");
+		    }
+		    else{
+		    	next();
+		    }
+	    });
+    }
+  	
+}
+
+app.use(authenticate);
 
 
 // file saving
