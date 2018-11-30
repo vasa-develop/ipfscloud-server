@@ -64,7 +64,7 @@ module.exports = function(app) {
  app.route('/apiKey/create')
   .post(key.createKey);
 
- app.route('/')
+ 
 
 };
 

@@ -6,8 +6,8 @@ const bodyParser = require('body-parser');
 
 
 //const ipfs = ipfsAPI({'api-path': '/api/v0/', host: nodes.ipfs_california, port: '5001', protocol: 'https'});
-const mongoose = require('mongoose');
-const API_Keys = require('./api/models/keysModel.model');
+//const mongoose = require('mongoose');
+//const API_Keys = require('./api/models/keysModel.model');
 const https = require("https");
 const fs = require("fs");
 const options = {
@@ -48,7 +48,7 @@ const app = express(),
 //MongoCode
 
 //Set up default mongoose connection
-var mongoDB = 'mongodb://'+process.env.DB_USER+':'+process.env.DB_PASS+'@ds215370.mlab.com:15370/tokens';
+/* var mongoDB = 'mongodb://'+process.env.DB_USER+':'+process.env.DB_PASS+'@ds215370.mlab.com:15370/tokens';
 mongoose.connect(mongoDB, { useNewUrlParser: true }, (err)=>{
 	if(err){
 		console.log("MongoDB failed to connect.");
@@ -63,7 +63,7 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 
 //Bind connection to error event (to get notification of connection errors)
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.on('error', console.error.bind(console, 'MongoDB connection error:')); */
 
 
 
@@ -76,8 +76,8 @@ app.use(bodyParser.json({limit: '500mb'}))
 // allow access control origin and headers
 app.use(function(req, res, next){
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "authorization");
-    res.header("Origin, X-Requested-With, Content-Type, Accept");
+    //res.header("Access-Control-Allow-Headers", "authorization");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
@@ -86,7 +86,7 @@ app.use(express.static('public'));
 app.use('/uploads', express.static('uploads'));
 
 
-var authenticate = function (req, res, next) {
+/* var authenticate = function (req, res, next) {
 
 	var header=req.headers['authorization']||'',        // get the header
     token=header.split(/\s+/).pop()||'',            // and the encoded auth token
@@ -119,7 +119,7 @@ var authenticate = function (req, res, next) {
   	
 }
 
-app.use(authenticate);
+app.use(authenticate); */
 
 
 // file saving
