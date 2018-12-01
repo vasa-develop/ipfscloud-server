@@ -1,0 +1,19 @@
+var mongoose = require('mongoose');
+
+//Define a schema
+var Schema = mongoose.Schema;
+
+var docsModelSchema = new Schema({
+    docName: String,
+    body: String,
+    roomId: String,
+    owner: String,
+    type: String,
+    read: [],
+    write: [],
+    createdAt: Date,
+    lastEditedAt: Date
+});
+
+// Compile model from schema
+module.exports = mongoose.model('docs', docsModelSchema);

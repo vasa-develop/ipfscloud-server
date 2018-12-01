@@ -5,6 +5,7 @@ const share = require('../controllers/shareController.js');
 const search = require('../controllers/searchController.js');
 const host = require('../controllers/hostController.js');
 const key = require('../controllers/apiKeyController.js');
+const docs = require('../controllers/docsController.js');
 /*const orbit_keyvalue = require('../controllers/orbitKeyValueController.js');*/
 const multer  = require('multer');
 var storage = multer.memoryStorage();
@@ -64,7 +65,18 @@ module.exports = function(app) {
  app.route('/apiKey/create')
   .post(key.createKey);
 
- 
 
+//IpfsDocs routes
+app.route('/doc')
+  .post(docs.addNewDoc)
+  .get(docs.getDocInfo);
+
+app.route('/docs/:uid')
+  .get(docs.getUserDocs)
+
+app.route('/doc/update')
+  .post(docs.updateDocument)
+app.route('/doc/permissions')
+  .post(docs.changeDocPermissions);
 };
 

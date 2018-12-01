@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 
 //const ipfs = ipfsAPI({'api-path': '/api/v0/', host: nodes.ipfs_california, port: '5001', protocol: 'https'});
-//const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 //const API_Keys = require('./api/models/keysModel.model');
 const https = require("https");
 const fs = require("fs");
@@ -48,7 +48,7 @@ const app = express(),
 //MongoCode
 
 //Set up default mongoose connection
-/* var mongoDB = 'mongodb://'+process.env.DB_USER+':'+process.env.DB_PASS+'@ds215370.mlab.com:15370/tokens';
+var mongoDB = 'mongodb://'+process.env.DB_USER+':'+process.env.DB_PASS+'@ds215370.mlab.com:15370/tokens';
 mongoose.connect(mongoDB, { useNewUrlParser: true }, (err)=>{
 	if(err){
 		console.log("MongoDB failed to connect.");
@@ -63,7 +63,7 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 
 //Bind connection to error event (to get notification of connection errors)
-db.on('error', console.error.bind(console, 'MongoDB connection error:')); */
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 
 
