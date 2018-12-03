@@ -19,8 +19,8 @@ const rimraf = require('rimraf');
 const nodes = require('../../config/nodes.js');
 
 
-const ipfs_infura = ipfsAPI({'api-path': '/api/v0/', host: nodes.ipfs_infura, port: '5001', protocol: 'https'});
-const ipfsecret = new IPFSecret({ host: nodes.ipfs_infura,  port: 5001, proto: 'https' });
+const ipfs_infura = ipfsAPI({'api-path': '/api/v0/', host: nodes.ipfs_virginia, port: '5001', protocol: 'http'});
+const ipfsecret = new IPFSecret({ host: nodes.ipfs_virginia,  port: 5001, proto: 'http' });
 
 
 

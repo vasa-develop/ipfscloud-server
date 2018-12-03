@@ -3,7 +3,7 @@ const fs = require("fs");
 const unzip = require('unzip');
 const ipfsAPI = require('ipfs-api');
 const nodes = require('../../config/nodes.js');
-const ipfs_infura = ipfsAPI({'api-path': '/api/v0/', host: nodes.ipfs_infura, port: '5001', protocol: 'http'});
+const ipfs_infura = ipfsAPI({'api-path': '/api/v0/', host: nodes.ipfs_virginia, port: '5001', protocol: 'http'});
 
 exports.upload = function(req, res, next) {
 
