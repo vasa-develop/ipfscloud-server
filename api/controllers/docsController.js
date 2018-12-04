@@ -2,7 +2,7 @@ const ipfsAPI = require('ipfs-api');
 const nodes = require('../../config/nodes.js');
 const fs = require('fs');
 const DOCS = require('../models/docsModel.model');
-const ipfs_infura = ipfsAPI({'api-path': '/api/v0/', host: nodes.ipfs_infura, port: '5001', protocol: 'https'});
+const ipfs_infura = ipfsAPI({'api-path': '/api/v0/', host: nodes.ipfs_virginia, port: '5001', protocol: 'http'});
 
 
 exports.addNewDoc = function(req, res, next) {
@@ -166,10 +166,14 @@ exports.getUserDocs = function(req, res, next) {
 
 exports.updateDocument = function(req, res, next) {
 
-	var updates = {
-		"docName": req.body.title,
-		"body": req.body.body
-	};
+	var updates = {};
+	
+	if(req.body.title){
+		updates["docName"] = req.body.title;
+	}
+	if(req.body.body){
+		updates["body"] = req.body.body;
+	}
 
 	DOCS.findOneAndUpdate({
 		'roomId': req.body.roomId
