@@ -14,6 +14,17 @@ var upload = multer({ storage: storage });
 
 module.exports = function(app) {
 
+  /**
+   * @swagger
+   * /file:
+   *   post:
+   *     description: Upload a file on IpfsCloud
+   *     produces:
+   *       - application/json
+   *     responses:
+   *       200:
+   *         description: file uploaded
+   */
  app.route('/file')
     .post(upload.single('file'), file.upload);
 
@@ -64,7 +75,6 @@ module.exports = function(app) {
  app.route('/apiKey/create')
   .post(key.createKey);
 
- 
+
 
 };
-

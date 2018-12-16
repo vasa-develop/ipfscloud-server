@@ -10,6 +10,8 @@ const bodyParser = require('body-parser');
 //const API_Keys = require('./api/models/keysModel.model');
 const https = require("https");
 const fs = require("fs");
+const pathToSwaggerUi = require('swagger-ui-dist').absolutePath();
+const swaggerJSDoc = require('swagger-jsdoc');
 const options = {
  // key: fs.readFileSync("/home/ipfscloud/.acme.sh/*.ipfscloud.store/*.ipfscloud.store.key"),
  //cert: fs.readFileSync("/home/ipfscloud/.acme.sh/*.ipfscloud.store/*.ipfscloud.store.cer")
@@ -19,6 +21,26 @@ const options = {
 const app = express(),
       port = process.env.PORT || 3001;
 
+let swaggerDefinition = {
+  info: {
+    title: 'IpfsCloud swagger API',
+    version: '1.0.1',
+    description: 'Documentation about IpfsCloud API',
+  },
+  host: 'localhost:3001',
+  basePath: '/',
+};
+
+// options for the swagger docs
+let swaggerOptions = {
+  // import swaggerDefinitions
+  swaggerDefinition: swaggerDefinition,
+  // path to the API docs
+  apis: ['./api/routes/routes.js'],
+};
+
+// initialize swagger-jsdoc
+let swaggerSpec = swaggerJSDoc(swaggerOptions);
 
 	//OrbitDB
 
@@ -84,7 +106,7 @@ app.use(function(req, res, next){
 //serving static assets
 app.use(express.static('public'));
 app.use('/uploads', express.static('uploads'));
-
+app.use('/swagger',express.static(pathToSwaggerUi));
 
 /* var authenticate = function (req, res, next) {
 
@@ -94,7 +116,7 @@ app.use('/uploads', express.static('uploads'));
     parts=auth.split(/:/),                          // split on colon
     password=parts[1];
 
-    
+
     if(!password){
     	res.status(401);
     	res.send("No API_KEY found in authorization header. Visit https://ipfscloud.store/docs/v1 to get an API_KEY.");
@@ -116,7 +138,7 @@ app.use('/uploads', express.static('uploads'));
 		    }
 	    });
     }
-  	
+
 }
 
 app.use(authenticate); */
@@ -128,6 +150,11 @@ app.use(authenticate); */
 // define a simple route
 app.get('/', (req, res) => {
     res.json({"health": "good"});
+});
+
+app.get('/swagger.json', function(req, res) {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
 });
 
 //Importing routes
