@@ -36,6 +36,7 @@
     "request-promise": "^4.2.2",
     "streammagic": "^1.0.0",
     "swagger": "^0.7.5",
+    "swagger-jsdoc": "^3.2.6",
     "unzip": "^0.1.11",
     "util": "^0.11.0",
     "zip-folder": "^1.0.0"
